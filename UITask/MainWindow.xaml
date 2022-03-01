@@ -51,7 +51,7 @@
                 <RadioButton Content="Female" GroupName="A"/>
             </RadioButtons>
             <Button Grid.Row="6" Content="Save" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                    IsEnabled="{x:Bind ViewModel.NewEmployee.IsValid}"
+                    IsEnabled="{x:Bind ViewModel.NewEmployee.IsValid, Mode=OneWay}"
                     Click="{x:Bind ViewModel.NewEmployee.Save}"/>
 
 
