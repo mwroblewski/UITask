@@ -8,6 +8,19 @@ namespace UITask.Common
         private readonly Employee _employee;
         private readonly IEmployeeDataProvider _dataProvider;
 
+        public static EmployeeViewModel GetDefault(IEmployeeDataProvider dataProvider) 
+        {
+            return new EmployeeViewModel(new Employee
+            {
+                FirstName = "John",
+                LastName = "Smith",
+                Salary = 10000,
+                IsDeveloper = true,
+                Sex = Sex.Male
+            },
+            dataProvider);
+        }
+
         public EmployeeViewModel(Employee employee, IEmployeeDataProvider dataProvider)
         {
             _employee = employee;
@@ -83,6 +96,10 @@ namespace UITask.Common
                 RaisePropertyChanged();
             }
         }
+
+        public bool IsValid =>
+            !string.IsNullOrWhiteSpace(_employee.FirstName) && !string.IsNullOrWhiteSpace(_employee.LastName) && _employee.Salary >= 0;
+        
 
         public void Save()
         {
