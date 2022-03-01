@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "UITask (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "UITask (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
