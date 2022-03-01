@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using UITask.Common;
 
-namespace UITask.DataProvider
+namespace UITask.Common
 {
     public interface IEmployeeDataProvider
     {

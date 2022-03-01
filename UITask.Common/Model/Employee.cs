@@ -1,4 +1,4 @@
-﻿namespace UITask
+﻿namespace UITask.Common
 {
     public class Employee
     {
