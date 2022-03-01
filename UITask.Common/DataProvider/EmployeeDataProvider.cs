@@ -7,7 +7,7 @@ namespace UITask.Common
 {
     public class EmployeeDataProvider : IEmployeeDataProvider
     {
-        private readonly List<Employee> _employees = new();
+        private List<Employee> _employees = new();
         private static readonly string fileName = "employees.json";
         private readonly string path;
         public EmployeeDataProvider()
@@ -17,16 +17,24 @@ namespace UITask.Common
             {
                 File.Create(path).Close();
             }
-            var fileContent = File.ReadAllText(path);
-            if (string.IsNullOrEmpty(fileContent) == false)
-            {
-                var deserializedEmployees = JsonSerializer.Deserialize(File.ReadAllText(path), typeof(List<Employee>));
-                _employees = deserializedEmployees as List<Employee>;
-            }
         }
         public IEnumerable<Employee> LoadEmployees()
         {
-            return _employees;
+            try
+            {
+                var fileContent = File.ReadAllText(path);
+                if (string.IsNullOrEmpty(fileContent) == false)
+                {
+                    var deserializedEmployees = JsonSerializer.Deserialize(fileContent, typeof(List<Employee>));
+                    _employees = deserializedEmployees as List<Employee>; //could append employees to the list instead of reassigning field (and then _empolyees could be marked as readonly)
+                }
+                return _employees;
+            }
+            catch (Exception error)
+            {
+                //could use some log here
+                return new List<Employee>(); // or rethrow
+            }
         }
 
         public void SaveEmployee(Employee who)
@@ -35,11 +43,12 @@ namespace UITask.Common
             var serializedEmployees = JsonSerializer.SerializeToUtf8Bytes(_employees);
             try
             {
-                File.WriteAllBytes(path, serializedEmployees);
+                File.WriteAllBytes(path, serializedEmployees); //could append text instead of overwriting the whole file
             }
             catch (Exception error)
             {
                 //could use some log here
+                //and could rethrow
             }
         }
     }
