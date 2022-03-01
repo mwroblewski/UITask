@@ -26,11 +26,11 @@ namespace UITask.Common
                 if (string.IsNullOrEmpty(fileContent) == false)
                 {
                     var deserializedEmployees = JsonSerializer.Deserialize(fileContent, typeof(List<Employee>));
-                    _employees = deserializedEmployees as List<Employee>; //could append employees to the list instead of reassigning field (and then _empolyees could be marked as readonly)
+                    _employees = deserializedEmployees as List<Employee>; //could append employees to the list instead of reassigning field (and then _employees could be marked as readonly)
                 }
                 return _employees;
             }
-            catch (Exception error)
+            catch
             {
                 //could use some log here
                 return new List<Employee>(); // or rethrow
@@ -45,7 +45,7 @@ namespace UITask.Common
             {
                 File.WriteAllBytes(path, serializedEmployees); //could append text instead of overwriting the whole file
             }
-            catch (Exception error)
+            catch
             {
                 //could use some log here
                 //and could rethrow

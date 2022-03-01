@@ -106,10 +106,12 @@ namespace UITask.Common
             _dataProvider.SaveEmployee(_employee);
         }
 
+        #region move it to abstract base class
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName] string whichProperty = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(whichProperty));
         }
+        #endregion
     }
 }
