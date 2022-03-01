@@ -42,15 +42,17 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="1"  Header="First Name" Margin="10"/>
-            <TextBox Grid.Row="2" Header="Last Name" Margin="10"/>
-            <TextBox Grid.Row="3" Header="Salary" Margin="10"/>
-            <CheckBox Grid.Row="4" Content="IsDeveloper" Margin="10"/>
+            <TextBox Grid.Row="1"  Header="First Name" Margin="10" Text="{x:Bind ViewModel.NewEmployee.FirstName, Mode=TwoWay}"/>
+            <TextBox Grid.Row="2" Header="Last Name" Margin="10" Text="{x:Bind ViewModel.NewEmployee.LastName, Mode=TwoWay}"/>
+            <TextBox Grid.Row="3" Header="Salary" Margin="10" Text="{x:Bind ViewModel.NewEmployee.Salary, Mode=TwoWay}"/>
+            <CheckBox Grid.Row="4" Content="IsDeveloper" Margin="10" IsChecked="{x:Bind ViewModel.NewEmployee.IsDeveloper, Mode=TwoWay}"/>
             <RadioButtons Grid.Row="5">
-                <RadioButton Content="Male"/>
-                <RadioButton Content="Female"/>
+                <RadioButton Content="Male" GroupName="A"/> <!--TODO IsChecked converter or use boolean instead of enum in model??-->
+                <RadioButton Content="Female" GroupName="A"/>
             </RadioButtons>
-            <Button Grid.Row="6" Content="Save"/>
+            <Button Grid.Row="6" Content="Save" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                    IsEnabled="{x:Bind ViewModel.NewEmployee.IsValid}"
+                    Click="{x:Bind ViewModel.NewEmployee.Save}"/>
 
 
         </Grid>
