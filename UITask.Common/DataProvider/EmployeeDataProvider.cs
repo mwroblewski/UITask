@@ -28,6 +28,10 @@ namespace UITask.Common
                     var deserializedEmployees = JsonSerializer.Deserialize(fileContent, typeof(List<Employee>));
                     _employees = deserializedEmployees as List<Employee>; //could append employees to the list instead of reassigning field (and then _employees could be marked as readonly)
                 }
+                else
+                {
+                    _employees = new List<Employee>();
+                }
                 return _employees;
             }
             catch
