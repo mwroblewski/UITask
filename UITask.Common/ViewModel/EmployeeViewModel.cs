@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace UITask.Common
@@ -27,6 +29,21 @@ namespace UITask.Common
             _dataProvider = dataProvider;
         }
 
+        public EmployeeViewModel NewEmployee => GetDefault(_dataProvider);
+
+        #region does not belong in here
+        public List<EmployeeViewModel> Employees { get; } = new();
+
+        public void Load()
+        {
+            var employees = _dataProvider.LoadEmployees();
+            Employees.Clear();
+            foreach (var employee in employees)
+            {
+                Employees.Add(new EmployeeViewModel(employee, _dataProvider));
+            }
+        }
+        #endregion
         public string FirstName
         {
             get => _employee.FirstName;

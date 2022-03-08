@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace UITask.Common.ViewModel
@@ -13,8 +15,8 @@ namespace UITask.Common.ViewModel
             _dataProvider = dataProvider;
         }
         public ObservableCollection<EmployeeViewModel> Employees { get; } = new();
-        public EmployeeViewModel NewEmployee => EmployeeViewModel.GetDefault(_dataProvider);  
-        
+        public EmployeeViewModel NewEmployee => EmployeeViewModel.GetDefault(_dataProvider);
+
         public void Load()
         {
             var employees = _dataProvider.LoadEmployees();
