@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="UITask.Pages.EmployeesList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UITask.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:common="using:UITask.Common"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView Margin="10" Name="EmployeesListView" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock>
+                            <Run Text="Name:"/>
+                            <Run Text="{Binding FirstName}"/>
+                            <Run Text="{Binding LastName}"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Is Developer:"/>
+                            <Run Text="{Binding IsDeveloper}" FontWeight="Bold"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Salary:"/>
+                            <Run Text="{Binding Salary}"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Sex:"/>
+                            <Run Text="{Binding Sex}"/>
+                        </TextBlock>
+                        <Rectangle HorizontalAlignment="Stretch" Fill="Blue" Height="4"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
