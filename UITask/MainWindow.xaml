@@ -5,6 +5,7 @@
     xmlns:local="using:UITask"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -13,7 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <!--<ColumnDefinition Width="250"/>-->
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -24,15 +25,33 @@
 
         </Border>
 
-        <Grid Grid.Row="1">
+        <!--<Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListView Grid.Row="1"/>
-        </Grid>
+            <ListView Grid.Row="1"
+                SelectionChanged="ChangeView"
+                ItemsSource="{x:Bind ViewModel.AvailableViews,Mode=TwoWay}"/>
+        </Grid>-->
 
-        <Grid Grid.Row="1" Grid.Column="1">
+        <controls:NavigationView x:Name="navigationView" 
+                                Grid.Row="1" 
+                                Height="460"
+                                PaneDisplayMode="Auto" 
+                                IsTabStop="False" 
+                                SelectionChanged="nvSample5_SelectionChanged" 
+                                IsSettingsVisible="False"
+                                IsPaneToggleButtonVisible="False"
+                                IsBackButtonVisible="Collapsed">
+            <controls:NavigationView.MenuItems>
+                <controls:NavigationViewItem Content="New Employee" Tag="NewEmployee"/>
+                <controls:NavigationViewItem Content="Employees List" Tag="EmployeesList"/>
+            </controls:NavigationView.MenuItems>
+            <Frame Margin="0,0,0,0" x:Name="contentFrame" />
+        </controls:NavigationView>
+
+        <!--<Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -48,12 +67,12 @@
             <CheckBox Grid.Row="4" Content="IsDeveloper" Margin="8" IsChecked="{x:Bind ViewModel.NewEmployee.IsDeveloper, Mode=TwoWay}"/>
             <RadioButtons Grid.Row="5" Margin="8">
                 <RadioButton Content="Male" GroupName="A"/>
-                <!--TODO IsChecked converter or use boolean instead of enum in model??-->
+                --><!--TODO IsChecked converter or use boolean instead of enum in model??--><!--
                 <RadioButton Content="Female" GroupName="A"/>
             </RadioButtons>
             <Button Grid.Row="6" Content="Save" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                     IsEnabled="{x:Bind ViewModel.NewEmployee.IsValid, Mode=OneWay}"
                     Click="{x:Bind ViewModel.NewEmployee.Save}"/>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>
