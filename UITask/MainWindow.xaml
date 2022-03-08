@@ -40,7 +40,7 @@
                                 Height="460"
                                 PaneDisplayMode="Auto" 
                                 IsTabStop="False" 
-                                SelectionChanged="nvSample5_SelectionChanged" 
+                                SelectionChanged="ChangePage" 
                                 IsSettingsVisible="False"
                                 IsPaneToggleButtonVisible="False"
                                 IsBackButtonVisible="Collapsed">
