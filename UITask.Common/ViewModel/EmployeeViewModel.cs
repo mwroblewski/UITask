@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace UITask.Common
@@ -31,19 +29,6 @@ namespace UITask.Common
 
         public EmployeeViewModel NewEmployee => GetDefault(_dataProvider);
 
-        #region does not belong in here
-        public List<EmployeeViewModel> Employees { get; } = new();
-
-        public void Load()
-        {
-            var employees = _dataProvider.LoadEmployees();
-            Employees.Clear();
-            foreach (var employee in employees)
-            {
-                Employees.Add(new EmployeeViewModel(employee, _dataProvider));
-            }
-        }
-        #endregion
         public string FirstName
         {
             get => _employee.FirstName;
@@ -115,7 +100,9 @@ namespace UITask.Common
         }
 
         public bool IsValid =>
-            !string.IsNullOrWhiteSpace(_employee.FirstName) && !string.IsNullOrWhiteSpace(_employee.LastName) && _employee.Salary >= 0;
+            string.IsNullOrWhiteSpace(_employee.FirstName) == false && 
+            string.IsNullOrWhiteSpace(_employee.LastName) == false && 
+            _employee.Salary >= 0;
         
 
         public void Save()
@@ -123,12 +110,10 @@ namespace UITask.Common
             _dataProvider.SaveEmployee(_employee);
         }
 
-        #region move it to abstract base class
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged([CallerMemberName] string whichProperty = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(whichProperty));
         }
-        #endregion
     }
 }

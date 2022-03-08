@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace UITask.Common.ViewModel
 {
@@ -14,17 +9,15 @@ namespace UITask.Common.ViewModel
         public EmployeesListViewModel(IEmployeeDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
+            Load();
         }
 
         public ObservableCollection<EmployeeViewModel> Employees { get; } = new();
 
-        public EmployeeViewModel SelectedEmployee { get; set; }
-
-        public void Load()
+        private void Load()
         {
             //TODO could put some watcher on the file 
             var employees = _dataProvider.LoadEmployees();
-            //Employees.Clear();
             foreach (var employee in employees)
             {
                 Employees.Add(new EmployeeViewModel(employee, _dataProvider));

@@ -4,9 +4,9 @@
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public decimal Salary { get; set; }
+        public decimal Salary { get; set; } //For this task this could simply be uint/ulong
         public bool IsDeveloper { get; set; }
-        public Sex Sex { get; set; } = Sex.Male;
+        public Sex Sex { get; set; }
     }
 
     public enum Sex
