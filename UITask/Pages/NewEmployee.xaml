@@ -23,7 +23,7 @@
         <TextBox Grid.Row="3" Header="Salary" Margin="8" Text="{x:Bind ViewModel.NewEmployee.Salary, Mode=TwoWay}"/>
         <CheckBox Grid.Row="4" Content="IsDeveloper" Margin="8" IsChecked="{x:Bind ViewModel.NewEmployee.IsDeveloper, Mode=TwoWay}"/>
         <RadioButtons Grid.Row="5" Margin="8">
-            <RadioButton Content="Male" GroupName="A"/>
+            <RadioButton Content="Male" GroupName="A" IsChecked="True"/>
             <!--TODO IsChecked converter or use boolean instead of enum in model??-->
             <RadioButton Content="Female" GroupName="A"/>
         </RadioButtons>

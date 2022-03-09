@@ -37,4 +37,19 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+
+    <!--This approach below is more modern and elegant and should be used instead-->
+    <!--<StackPanel>
+    <ListView
+        x:Name="EmployeesListView"
+        ItemTemplate="{StaticResource ContactListViewTemplate}"
+        BorderThickness="1"
+        Width="350"
+        Height="400"
+        HorizontalAlignment="Left"/>
+
+        <DataTemplate x:DataType="common:EmployeeListViewModel">
+            <TextBlock Text="{x:Bind FirstName}"/>
+        </DataTemplate>
+    </StackPanel>-->
 </Page>
